@@ -20,6 +20,10 @@
                   <app-book-page-navigation
                   v-bind:leftTitle="'left'"
                   v-bind:rightTitle="'right'"
+
+                  v-bind:leftClick="preBookPage"
+                  v-bind:rightClick="nextBookPage"
+
                   ></app-book-page-navigation>
                 <!-- app-book-page-navigation -->
 
@@ -108,7 +112,8 @@
         load: true,
 
         bookName: 'My book title',
-        pages: ['page1', 'page2', 'page3'],
+
+        pages: ['page1'],
         currentPage: 1,
 
         rmvPageText: 'Удалить страницу',
@@ -123,6 +128,24 @@
     },
 
     methods: {
+
+      nextBookPage(){
+        console.log('try next');
+        if ( !( this.currentPage + 1 > this.pages.length ) ){
+          console.log('next', this.currentPage, this.pages.length);
+          this.currentPage = this.currentPage + 1;
+          console.log('next', this.currentPage, this.pages.length);
+        }
+      },
+      preBookPage(){
+        console.log('try pre');
+        if ( !( this.currentPage - 1 < 1 ) ){
+          console.log('pre', this.currentPage, this.pages.length);
+          this.currentPage = this.currentPage - 1;
+          console.log('pre', this.currentPage, this.pages.length);
+        }
+      },
+
       addPage() {
         this.pages.push('page' + (this.pages.length + 1) );
       },

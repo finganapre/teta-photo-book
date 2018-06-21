@@ -1,9 +1,9 @@
 <template>
 	<div class="AppNavigation__arrow">
-	  <div class="AppNavigation__arrow__container" :title="leftTitle">
+	  <div class="AppNavigation__arrow__container" :title="leftTitle" @click="leftClick">
 	    <i class="fas fa-angle-left AppNavigation__arrow__container__left"></i>
 	  </div>
-	  <div class="AppNavigation__arrow__container text-right" :title="rightTitle">
+	  <div class="AppNavigation__arrow__container text-right" :title="rightTitle" @click="rightClick">
 	    <i class="fas fa-angle-right AppNavigation__arrow__container__right"></i>  
 	  </div>
 	</div>
@@ -13,7 +13,10 @@
 	export default {
 		props: {
 			leftTitle: String,
-			rightTitle: String
+			rightTitle: String,
+
+			leftClick: Function,
+			rightClick: Function
 		},
 		methods: {
 		  
