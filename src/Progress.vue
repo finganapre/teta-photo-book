@@ -7,11 +7,8 @@
 <script>
 	export default {
 		props: {
-			/*max: Number,
-			val: Number*/
-
-			max: 17,
-			val: 3
+			max: Number,
+			val: Number
 		},
 
 		computed: {
