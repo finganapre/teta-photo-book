@@ -128,7 +128,7 @@
     },
 
     methods: {
-
+      // next
       nextBookPage(){
         console.log('try next');
         if ( !( this.currentPage + 1 > this.pages.length ) ){
