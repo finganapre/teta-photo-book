@@ -1,6 +1,8 @@
 <template>      
-  <div class="progress">
-  	<div class="progress-bar" v-bind:style="width"></div>
+  <div class="progress Progress">
+  	<div class="progress-bar" v-bind:style="width">
+		<div class="" v-show="showNumber">{{ val + ' / ' + max }}</div>
+  	</div>
   </div>
 </template>
 
@@ -8,7 +10,8 @@
 	export default {
 		props: {
 			max: Number,
-			val: Number
+			val: Number,
+			showNumber: false
 		},
 
 		computed: {
@@ -28,3 +31,9 @@
 		}
 	}
 </script>
+
+<style lang="sass">
+	.Progress
+		height: 20px
+		border-radius: 0
+</style>
