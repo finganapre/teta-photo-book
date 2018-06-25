@@ -1,7 +1,7 @@
 <template>
-	<div class="PhotoBookPageHeader" v-bind:class="setStyle">
+	<header class="PhotoBookPageHeader" v-bind:class="setStyle">
 		{{ pageNumber }}
-	</div>
+	</header>
 </template>
 
 <script>

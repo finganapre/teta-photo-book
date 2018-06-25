@@ -172,7 +172,7 @@
 
 				pages: ['coverFront1', 'coverBack1', 'coverFront2', 'coverBack2'],
 				bookSpreads: [ ],
-	        	currentPage: 1,
+	        	currentPage: 2,
 	        	currentSpread: 1,
 
 	        	rmvSpreadText: 'Удалить разворот',
@@ -199,6 +199,7 @@
 		    if ( !( this.currentSpread == this.bookSpreads.length ) ){
 		      console.log('next', this.currentPage, this.pages.length);
 		     	this.currentSpread += 1;
+		     	this.currentPage = this.currentSpread * 2;
 		      console.log('next', this.currentPage, this.pages.length);
 		    }
 		  },
@@ -208,17 +209,20 @@
 		    if ( !( this.currentSpread == 1 ) ){
 		      console.log('pre', this.currentPage, this.pages.length);
 		      this.currentSpread -= 1;
+		      this.currentPage = this.currentSpread * 2;
 		      console.log('pre', this.currentPage, this.pages.length);
 		    }
 		  },
 			
 		  addPage(){
 			 this.pages.push('page' + (this.pages.length + 1) );
+			 this.currentPage = this.pages.length;
 		  },
 
 		  rmvPage(){
 			 if ( this.pages.length > 4 ) {
 			 	this.pages.splice(-1,1);
+
 			 	this.currentPage > this.pages.length ? this.currentPage = this.pages.length : 0;
 			 }
 		  },
@@ -227,18 +231,27 @@
 		    this.addPage();
 		    this.addPage();
 
+		    this.bookSpreads.push(this.pages.slice(-2));
+
 		    this.currentSpread = this.bookSpreads.length;
 
-		    console.log(this.currentSpread, this.bookSpreads.length);
+		    console.log('добавили разворот ', this.currentSpread, this.bookSpreads.length);
 		  },
 
 		  rmvSpread() {
+		  	console.log('состояние до добавления разворота ', this.currentSpread, this.bookSpreads.length);
 		  	this.rmvPage();
 		  	this.rmvPage();
+
+		  	if ( this.bookSpreads.length > 2 ){
+		  		this.bookSpreads.splice(-2, 1);
+		  	}
+		  	
+
 			
 			this.currentSpread > this.bookSpreads.length ? this.currentSpread = this.bookSpreads.length : 0;
 
-			console.log(this.currentSpread, this.bookSpreads.length);
+			console.log('удалили разворот ', this.currentSpread, this.bookSpreads.length);
 		  }
 		},
 

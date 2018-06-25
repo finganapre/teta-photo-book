@@ -3,8 +3,7 @@
 		<app-photo-book-page
 		v-for = " ( page, index ) in pages.slice( (spreadNumber * 2) - 2, spreadNumber * 2) "
 		v-bind:id = " index "
-		v-bind:pageNumber = " pageNumber "
-		
+		v-bind:spreadNumber = " spreadNumber "
 		>
 		</app-photo-book-page>
 	</div>
@@ -14,20 +13,22 @@
 	// v-bind:key="page.id"
 	// v-bind:pageNumber="index + 1"
 	// v-if = " index + 1 / pages.length < maxSpreadPage "
+	// v-bind:pageNumber = " pageNumber "
 	import PhotoBookPage from './PhotoBookPage.vue';
 
 	export default {
 		data(){
 			return {
-				maxSpreadPage: 2,
-				cIndex: 0,
-				val: 0
+				maxSpreadPage: 2
 			}
 		},
 		props: {
 			spreads: Array,
 			pages: Array,
 			spreadNumber: Number
+		},
+		methods: {
+
 		},
 		computed: {
 			pageNumber(){
