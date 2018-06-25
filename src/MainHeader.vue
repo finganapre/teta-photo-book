@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="container">
 				<div class="row flex-row">
-					<div class="col-lg-6">
+					<div class="col-md-8">
 						<app-main-logo></app-main-logo>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-md-4">
 						<app-main-burger-menu></app-main-burger-menu>
 					</div>
 				</div>

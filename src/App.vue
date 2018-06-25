@@ -7,7 +7,8 @@
 
             <app-photo-book
             v-bind:bookName = "'My Book Title'"
-            ></app-photo-book>
+            >
+            </app-photo-book>
 
           </section>
     </div>
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-  
   import MainHeader from './MainHeader.vue';
+
   import PhotoBook from './PhotoBook.vue';
 
   import MainFooter from './MainFooter.vue';
@@ -58,9 +59,6 @@
 <style lang="sass">
   body
     font-size: 18px
-  .AppPhotoBook
-    &__title
-      margin: 0
   
   // std pd classes
   .std-pd-big
@@ -93,5 +91,4 @@
     flex-direction: column
   .content
     flex: 1
-
 </style>
