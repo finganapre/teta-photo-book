@@ -6,7 +6,7 @@
 		>
 		</app-photo-book-page-header>
 		
-		<div class="PhotoBookPageGrid PhotoBookPageGrid--grid1">
+		<div class="PhotoBookPageGrid PhotoBookPageGrid--tgrid2x3bc">
 			<app-photo-container
 			v-for=" item in photos "
 			v-bind:photo = " item "
@@ -53,7 +53,11 @@
 					{
 						id: 5,
 						href: 'src/assets/5.jpg'
-					}
+					},
+					/*{
+						id: 6,
+						href: 'src/assets/6.jpeg'
+					}*/
 					
 				]
 			}
@@ -112,7 +116,58 @@
 		
 	.PhotoBookPageGrid
 		display: grid
-		&--grid1
-			grid-template-columns: 33.33% 33.33% 33.33%
-			grid-template-rows: 200px 200px 200px
+		grid-gap: 20px
+		&--grid1x1
+			grid-template-rows: 1fr
+			grid-template-columns: 1fr
+		&--grid1x2
+			grid-template-rows: 1fr
+			grid-template-columns: repeat(2, 1fr)
+		&--grid2x1
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: 1fr
+		&--grid2x2
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(2, 1fr)
+		&--grid2x3
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+		&--grid3x1
+			grid-template-rows: repeat(3, 1fr)
+			grid-template-columns: repeat(1, 1fr)
+		&--grid3x2
+			grid-template-rows: repeat(3, 1fr)
+			grid-template-columns: repeat(2, 1fr)
+		&--grid3x3
+			grid-template-rows: repeat(3, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+		&--tgrid2x3bc
+			grid-template-areas: "photo1 photo2 photo3" "photo4 photo2 photo5"
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+			& .PhotoContainer
+				&.photo1
+					grid-area: photo1
+				&.photo2
+					grid-area: photo2
+				&.photo3
+					grid-area: photo3
+				&.photo4
+					grid-area: photo4
+				&.photo5
+					grid-area: photo5
+				&.photo6
+					grid-area: photo6
+				&.photo7
+					grid-area: photo7
+				&.photo8
+					grid-area: photo8
+				&.photo9
+					grid-area: photo9
+				&.photo10
+					grid-area: photo10
+				&.photo11
+					grid-area: photo11
+				&.photo12
+					grid-area: photo12
 </style>

@@ -1,4 +1,5 @@
 <template>
+	
 	<div class="PhotoBookSpread">
 		<app-photo-book-page
 		v-for = " ( page, index ) in pages.slice( (spreadNumber * 2) - 2, spreadNumber * 2) "
@@ -7,6 +8,7 @@
 		>
 		</app-photo-book-page>
 	</div>
+	
 </template>
 
 <script>

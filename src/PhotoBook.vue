@@ -57,14 +57,15 @@
 	     <!-- AppPhotoBook__book -->
 	     	<div class="row">
 	     		<div class="col-md-12">
-	     			<app-photo-book-spread
-	     			v-bind:spreads="bookSpreads"
-	     			v-bind:pages="pages"
-	     			v-for="(spread, index) in bookSpreads"
-					v-bind:spreadNumber="index + 1"
-	     			>	
-	     			</app-photo-book-spread>
-	     			
+	     			<app-slick ref="slick" :options="slickOptions">
+	     				<app-photo-book-spread
+		     			v-bind:spreads="bookSpreads"
+		     			v-bind:pages="pages"
+		     			v-for="(spread, index) in bookSpreads"
+						v-bind:spreadNumber="index + 1"
+		     			>	
+		     			</app-photo-book-spread>
+	     			</app-slick>
 	     		</div>
 	     	</div>
 			
@@ -94,6 +95,8 @@
 </template>
 
 <script>
+	import Slick from 'vue-slick';
+
 	import BookPageNavigation from './BookPageNavigation.vue';
 	import Progress from './Progress.vue';
 	
@@ -103,6 +106,10 @@
 	export default {
 		data(){
 			return {
+				slickOptions: {
+	                slidesToShow: 1,
+	                // Any other options that can be got from plugin documentation
+	            },
 				bookSpreadsNew: [
 					{
 						id: 0,
@@ -191,6 +198,21 @@
 		},
 
 		methods: {
+		  next() {
+              this.$refs.slick.next();
+          },
+
+          prev() {
+              this.$refs.slick.prev();
+          },
+
+          reInit() {
+              // Helpful if you have to deal with v-for to update dynamic lists
+              this.$nextTick(() => {
+                  this.$refs.slick.reSlick();
+              });
+          },
+
 		  // next
 		  nextBookSpread() {
 
@@ -256,6 +278,8 @@
 		},
 
 		components: {
+		  AppSlick: Slick,
+
 		  AppBookPageNavigation: BookPageNavigation,
 		  AppProgress: Progress,
 		
@@ -308,7 +332,7 @@
 		mounted() {
 		  this.cash;
 		  this.pushSpreads;
-
+		  //this.reInit;
 		  //console.log(this.pages.length);
 		  //console.log(this.bookSpreads.length);
 		}
