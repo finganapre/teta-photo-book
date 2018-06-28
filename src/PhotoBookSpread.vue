@@ -59,4 +59,5 @@
 
 <style lang="sass">
 	.PhotoBookSpread
+		//position: absolute
 </style>

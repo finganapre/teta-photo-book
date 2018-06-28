@@ -57,15 +57,17 @@
 	     <!-- AppPhotoBook__book -->
 	     	<div class="row">
 	     		<div class="col-md-12">
-	     			<app-slick ref="slick" :options="slickOptions">
+	     			<transition name="flip" mode="out-in">
 	     				<app-photo-book-spread
 		     			v-bind:spreads="bookSpreads"
 		     			v-bind:pages="pages"
 		     			v-for="(spread, index) in bookSpreads"
 						v-bind:spreadNumber="index + 1"
+						v-bind:key="index + 1"
+						v-if="currentSpread == index + 1"
 		     			>	
 		     			</app-photo-book-spread>
-	     			</app-slick>
+	     			</transition>
 	     		</div>
 	     	</div>
 			
@@ -343,4 +345,22 @@
 	.AppPhotoBook
 	  &__title
 	    margin: 0
+
+	.flip-enter
+	.flip-enter-active
+		animation: flipInX 0.3s linear
+	.flip-leave
+	.flip-leave-active
+		animation: flipOutX 0.3s linear
+
+	@keyframes flipInX
+		from
+			transform: rotateX(90deg)
+		to
+			transform: rotate(0deg)
+	@keyframes flipOutX
+		from
+			transform: rotateX(0deg)
+		to
+			transform: rotateX(90deg)
 </style>
