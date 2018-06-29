@@ -3,6 +3,7 @@
 		<app-photo-book-page-header
 		v-bind:direction="pageDirection"
 		v-bind:pageNumber="pageNumber"
+		@openTemplateWindow="redshowTemplateWindow"
 		>
 		</app-photo-book-page-header>
 		
@@ -20,6 +21,10 @@
 		v-bind:pageNumber="pageNumber"
 		>
 		</app-photo-book-page-footer>
+
+		<app-photo-book-template-window v-bind:show="showTemplateWindow">
+			
+		</app-photo-book-template-window>
 	</div>
 </template>
 
@@ -29,6 +34,8 @@
 	import PhotoContainer from './PhotoContainer.vue';
 
 	import PhotoBookPageFooter from './PhotoBookPageFooter.vue';
+
+	import PhotoBookTemplateWindow from './PhotoBookTemplateWindow.vue';
 
 	export default {
 		data(){
@@ -59,13 +66,20 @@
 						href: 'src/assets/6.jpeg'
 					}*/
 					
-				]
+				],
+
+				showTemplateWindow: false
 			}
 		},
 
 		props: {
 			spreadNumber: Number,
 			id: Number,
+		},
+		methods: {
+			redshowTemplateWindow(){
+				this.showTemplateWindow = !this.showTemplateWindow;
+			}
 		},
 		computed: {
 			pageNumber(){
@@ -90,14 +104,18 @@
 					return pageDirection;
 				}
 				
-			}			
+			},
+
+						
 		},
 		components: {
 			AppPhotoBookPageHeader: PhotoBookPageHeader,
 
 			AppPhotoContainer: PhotoContainer,
 
-			AppPhotoBookPageFooter: PhotoBookPageFooter
+			AppPhotoBookPageFooter: PhotoBookPageFooter,
+
+			AppPhotoBookTemplateWindow: PhotoBookTemplateWindow
 		}
 	}
 </script>

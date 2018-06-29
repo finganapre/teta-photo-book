@@ -3,10 +3,10 @@
 	 <div class="AppPhotoBook">
 	   <h2 class="AppPhotoBook__title text-center">{{ bookName }}</h2>
 	   
-	   <div class="std-pd-md">
+	   <div class="std-pd-md-top">
 
 	     
-	     <div class="std-md-pagging">
+	     <div>
 
 	     <!-- app-book-page-navigation -->
 	       <app-book-page-navigation
@@ -40,12 +40,18 @@
 	     <!-- app-progress -->
 	   </div>
 
-	   <div class="std-pd-md-bt">
+	   <div class="std-pd-xs-top">
 	     <!-- AppPhotoBookOptions -->
 	     <div class="AppOptions">
 	       <div class="AppOptions__Page">
-	         <button class="AppOptions__Page__rmvPage btn btn-danger" @click="rmvSpread">{{ rmvSpreadText }}</button>
-	         <button class="AppOptions__Page__addPage btn btn-primary" v-on:click="addSpread">{{ addSpreadText }}</button>
+	         <button class="AppOptions__Page__rmvPage btn btn-danger" @click="rmvSpread">
+	         {{ rmvSpreadText }}
+	         	<!--<i class="far fa-minus-square"></i>-->
+	         </button>
+	         <button class="AppOptions__Page__addPage btn btn-primary" v-on:click="addSpread">
+	         {{ addSpreadText }}
+	         	<!--<i class="far fa-plus-square"></i>-->
+	         </button>
 	       </div>
 	     </div>
 	     <!-- AppPhotoBookOptions -->
@@ -97,7 +103,6 @@
 </template>
 
 <script>
-	import Slick from 'vue-slick';
 
 	import BookPageNavigation from './BookPageNavigation.vue';
 	import Progress from './Progress.vue';
@@ -184,8 +189,8 @@
 	        	currentPage: 2,
 	        	currentSpread: 1,
 
-	        	rmvSpreadText: 'Удалить разворот',
-	        	addSpreadText: 'Добавить разворот',
+	        	rmvSpreadText: '-',
+	        	addSpreadText: '+',
 
 	        	prices: {
 	        	  /*key: 'value',
@@ -279,8 +284,7 @@
 		  }
 		},
 
-		components: {
-		  AppSlick: Slick,
+		components: {		  
 
 		  AppBookPageNavigation: BookPageNavigation,
 		  AppProgress: Progress,
@@ -346,12 +350,31 @@
 	  &__title
 	    margin: 0
 
+
+	.flip-leave
+		
+	.flip-leave-to
+		
+	.flip-leave-active		
+	 	animation: flipOutX 0.3s linear
 	.flip-enter
+		
+	.flip-enter-to
+		
 	.flip-enter-active
 		animation: flipInX 0.3s linear
-	.flip-leave
-	.flip-leave-active
-		animation: flipOutX 0.3s linear
+	
+
+	.AppOptions
+		&__Page
+			display: flex
+			justify-content: space-between
+			&__rmvPage
+				font-weight: bold
+				font-size: 1em
+			&__addPage
+				font-weight: bold
+				font-size: 1em
 
 	@keyframes flipInX
 		from

@@ -25,6 +25,7 @@
 
 <style lang="sass">
 	.PhotoBookPageFooter
+		padding-top: 5px
 		width: 100%
 		display: flex
 		flex-direction: row

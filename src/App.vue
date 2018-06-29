@@ -64,17 +64,25 @@
   .std-pd-big
     padding-top: 100px
     padding-bottom: 100px
+
   .std-pd-md
     padding-top: 40px
     padding-bottom: 40px
     &:last-child
       padding-bottom: 0
+  .std-pd-md-top
+    padding-top: 40px
+  .std-pd-md-bot
+    padding-bottom: 40px
+
   .std-pd-sm
     padding-top: 30px
     padding-bottom: 30px
   .std-pd-xs
     padding-top: 15px
     padding-bottom: 15px
+  .std-pd-xs-top
+    padding-top: 15px
 
   //  std flex class
   .flex-row
