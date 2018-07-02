@@ -4,10 +4,13 @@
 		v-bind:direction="pageDirection"
 		v-bind:pageNumber="pageNumber"
 		@openTemplateWindow="redshowTemplateWindow"
+		@addPhoto="addPhoto"
+		@rmvPhoto="rmvPhoto"
+		@nextTemplate="nextTemplate"
 		>
 		</app-photo-book-page-header>
 		
-		<div class="PhotoBookPageGrid PhotoBookPageGrid--tgrid2x3bc">
+		<div class="PhotoBookPageGrid" v-bind:class="changeTemplate">
 			<app-photo-container
 			v-for=" item in photos "
 			v-bind:photo = " item "
@@ -68,7 +71,59 @@
 					
 				],
 
-				showTemplateWindow: false
+				showTemplateWindow: false,
+
+				templatesClasses: [
+					{
+						classes: ['PhotoBookPageGrid--noPhoto']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid1x1']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid1x2', 'PhotoBookPageGrid--grid2x1']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid3x1']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid2x2']
+					},
+					{
+						classes: ['PhotoBookPageGrid--tgrid2x3bc']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid3x2', 'PhotoBookPageGrid--grid2x3']
+					},
+					{
+						classes: ['PhotoBookPageGrid--tgrid3x3bc']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid2x4']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid3x3']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid5x2']
+					},
+					{
+						classes: ['11']
+					},
+					{
+						classes: ['PhotoBookPageGrid--grid5x2']
+					}
+				],
+
+				currentClass: 0
+
+				/*
+					
+					
+					
+				*/
+
+
 			}
 		},
 
@@ -79,6 +134,33 @@
 		methods: {
 			redshowTemplateWindow(){
 				this.showTemplateWindow = !this.showTemplateWindow;
+			},
+
+			addPhoto(){
+				this.photos.push({
+					id: this.photos.length + 1,
+					href: 'src/assets/6.jpeg'
+				});
+				this.currentClass = 0;
+				console.log(this.photos);
+			},
+
+			rmvPhoto(){
+				console.log('rmv');
+				this.photos.splice(-1, 1);
+				this.currentClass = 0;
+			},
+
+			nextTemplate(){
+				if (this.templatesClasses[this.photos.length].classes[this.currentClass + 1]){
+					console.log('next', this.currentClass);
+					this.currentClass += 1;
+					//this.templatesClasses[this.photos.length].classes[this.currentClass + 1];
+				} else {
+					console.log('abort', this.templatesClasses[this.photos.length].classes[this.currentClass + 1]);
+					this.currentClass = 0;
+				}
+				
 			}
 		},
 		computed: {
@@ -105,6 +187,14 @@
 				}
 				
 			},
+
+			changeTemplate(){
+				let photoQnt = this.photos.length;
+				console.log(photoQnt);
+				let photoClass = this.templatesClasses[photoQnt].classes[this.currentClass];
+				console.log(photoClass);
+				return photoClass;
+			}
 
 						
 		},
@@ -135,33 +225,59 @@
 	.PhotoBookPageGrid
 		display: grid
 		grid-gap: 20px
+
+		// 1
 		&--grid1x1
 			grid-template-rows: 1fr
 			grid-template-columns: 1fr
+
+		//2
 		&--grid1x2
 			grid-template-rows: 1fr
 			grid-template-columns: repeat(2, 1fr)
 		&--grid2x1
 			grid-template-rows: repeat(2, 1fr)
 			grid-template-columns: 1fr
-		&--grid2x2
-			grid-template-rows: repeat(2, 1fr)
-			grid-template-columns: repeat(2, 1fr)
-		&--grid2x3
-			grid-template-rows: repeat(2, 1fr)
-			grid-template-columns: repeat(3, 1fr)
+
+		// 3
 		&--grid3x1
 			grid-template-rows: repeat(3, 1fr)
 			grid-template-columns: repeat(1, 1fr)
-		&--grid3x2
-			grid-template-rows: repeat(3, 1fr)
+
+		// 4
+		&--grid2x2
+			grid-template-rows: repeat(2, 1fr)
 			grid-template-columns: repeat(2, 1fr)
-		&--grid3x3
-			grid-template-rows: repeat(3, 1fr)
-			grid-template-columns: repeat(3, 1fr)
+		
+		// 5
 		&--tgrid2x3bc
 			grid-template-areas: "photo1 photo2 photo3" "photo4 photo2 photo5"
 			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+			& .PhotoContainer
+				&.photo1
+					grid-area: photo1
+				&.photo2
+					grid-area: photo2
+				&.photo3
+					grid-area: photo3
+				&.photo4
+					grid-area: photo4
+				&.photo5
+					grid-area: photo5
+
+		// 6
+		&--grid2x3
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+		&--grid3x2
+			grid-template-rows: repeat(3, 1fr)
+			grid-template-columns: repeat(2, 1fr)
+
+		// 7
+		&--tgrid3x3bc
+			grid-template-areas: "photo1 photo4 photo5" "photo2 photo4 photo6" "photo3 photo4 photo7"
+			grid-template-rows: repeat(3, 1fr)
 			grid-template-columns: repeat(3, 1fr)
 			& .PhotoContainer
 				&.photo1
@@ -178,14 +294,21 @@
 					grid-area: photo6
 				&.photo7
 					grid-area: photo7
-				&.photo8
-					grid-area: photo8
-				&.photo9
-					grid-area: photo9
-				&.photo10
-					grid-area: photo10
-				&.photo11
-					grid-area: photo11
-				&.photo12
-					grid-area: photo12
+
+		// 8
+		&--grid2x4
+			grid-template-rows: repeat(2, 1fr)
+			grid-template-columns: repeat(4, 1fr)
+
+		// 9
+		&--grid3x3
+			grid-template-rows: repeat(3, 1fr)
+			grid-template-columns: repeat(3, 1fr)
+
+		// 10
+		&--grid5x2
+			grid-template-rows: repeat(5, 1fr)
+			grid-template-columns: repeat(2, 1fr)
+
+
 </style>

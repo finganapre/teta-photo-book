@@ -4,7 +4,11 @@
 			{{ pageNumber }}
 		</div>
 		<div class="PhotoBookPageHeader__opt" v-bind:class="setHeaderOptStyle">
-			<i class="far fa-edit PhotoBookPageHeader__opt__template" @click="$emit('openTemplateWindow')"></i>
+			<i class="PhotoBookPageHeader__opt__template" @click="$emit('openTemplateWindow')">T</i>
+			<i class="PhotoBookPageHeader__opt__template" @click="$emit('addPhoto')">+</i>
+			<i class="PhotoBookPageHeader__opt__template" @click="$emit('rmvPhoto')">-</i>
+			<i class="fas fa-grip-horizontal PhotoBookPageHeader__opt__template" @click="$emit('nextTemplate')"></i>
+			
 		</div>
 	</header>
 </template>
